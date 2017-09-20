@@ -1,0 +1,31 @@
+private void buttonGetStat_Click(object sender, EventArgs e)
+        {
+            //Получение статистики 6 из 45
+            WebBrowser MyWeb = new WebBrowser();
+            MyWeb.ScriptErrorsSuppressed = true;
+            MyWeb.Navigate("http://www.stoloto.ru/6x45/archive");
+            MessageBox.Show("Подождите, пока загрузится страничка", "Пауза для загрузки");
+            HtmlElementCollection colDiv = MyWeb.Document.GetElementsByTagName("div");
+            StringBuilder sb = new StringBuilder();
+            foreach (HtmlElement el in colDiv)
+            {
+                if (el.GetAttribute("classname") == "main")
+                {
+                    HtmlElementCollection colMain = el.Children;
+                    foreach (HtmlElement elm in colMain)
+                    {
+                        if (elm.GetAttribute("classname") == "draw_date") sb.Append(elm.InnerText + Environment.NewLine);
+                        if (elm.GetAttribute("classname") == "draw") sb.Append(elm.InnerText + Environment.NewLine);
+                        if (elm.GetAttribute("classname") == "numbers")
+                        {
+                            HtmlElementCollection colNum = elm.Children[0].Children;
+                            string line = colNum[0].InnerText;
+                            sb.Append(line + Environment.NewLine);
+                        }
+                        if (elm.GetAttribute("classname") == "prize ") sb.Append(elm.InnerText + Environment.NewLine);
+                    }
+                }
+            }
+            textBoxStat.Text = sb.ToString();
+
+        }
