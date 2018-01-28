@@ -14,9 +14,12 @@ namespace JackTest
             //LoadData(lotto);
             //DataIO.SaveData(lotto,Options.l1FilePath);
 
-            Lotto lotto = DataIO.LoadData(Options.l1FilePath);
-            foreach(var i in lotto.GetAllDraws())
-                Console.WriteLine(i);
+            //Lotto lotto = DataIO.LoadData(Options.l1FilePath);
+            //foreach(var i in lotto.GetAllDraws())
+            //    Console.WriteLine(i);
+
+            //Console.WriteLine(ChanceCalculator.GetFact(7));
+            Console.WriteLine(ChanceCalculator.GetCombonationCount(6,45));
 
             Console.ReadKey();
         }

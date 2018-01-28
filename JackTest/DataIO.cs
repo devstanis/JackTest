@@ -8,12 +8,12 @@ namespace JackTest
     {
         public static bool SaveData(Lotto _lotto, string fileName)
         {
-            bool res = false;
+            var res = true;
             Stream stream = null;
             try
             {
                 stream = File.Create(fileName);
-                BinaryFormatter serializer = new BinaryFormatter();
+                var serializer = new BinaryFormatter();
                 serializer.Serialize(stream, _lotto);
             }
             catch
@@ -22,7 +22,7 @@ namespace JackTest
             }
             finally
             {
-                if(stream != null) stream.Dispose();
+                stream?.Dispose();
             }
             return res;
         }

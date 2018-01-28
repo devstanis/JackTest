@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChanceCalculator.cs" />
     <Compile Include="DataIO.cs" />
     <Compile Include="Draw.cs" />
     <Compile Include="Lotto.cs" />
